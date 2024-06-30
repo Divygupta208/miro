@@ -1,3 +1,11 @@
+import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
+
 export default function Home() {
-  return <p>Hello</p>;
+  return (
+    <div>
+      <div>Screen for Authetication</div>
+      <UserButton />
+    </div>
+  );
 }
