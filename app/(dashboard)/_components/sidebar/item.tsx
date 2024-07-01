@@ -39,3 +39,5 @@ export const Item = ({ id, name, imageUrl }: ItemProps) => {
     </div>
   );
 };
+
+export default Item;
