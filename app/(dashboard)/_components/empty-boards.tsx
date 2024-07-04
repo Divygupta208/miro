@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useOrganization } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useApiMutation } from "@/hooks/use-api-mutation";
+import { toast } from "sonner";
 
 export const Emptyboards = () => {
   const router = useRouter();
@@ -16,12 +17,12 @@ export const Emptyboards = () => {
     mutate({
       title: "Untitled",
       orgId: organization.id,
-    });
-    //   .then((id) => {
-    //     toast.success("Board created");
-    //     router.push(`/board/${id}`);
-    //   })
-    //   .catch(() => toast.error("Failed to create board"));
+    })
+      .then((id) => {
+        toast.success("Board created");
+        router.push(`/board/${id}`);
+      })
+      .catch(() => toast.error("Failed to create board"));
   };
   return (
     <div className="h-full flex flex-col items-center justify-center">
