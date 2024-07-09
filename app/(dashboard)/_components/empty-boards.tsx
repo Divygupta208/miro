@@ -33,8 +33,8 @@ export const Emptyboards = () => {
       </p>
       <div className="mt-6">
         <Button
-          //   className="disabled:cursor-not-allowed"
-          //   disabled={pending}
+          className="disabled:cursor-not-allowed"
+          disabled={pending}
           onClick={onClick}
           size="lg"
         >
