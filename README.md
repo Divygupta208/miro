@@ -1,4 +1,4 @@
-# miro-clone-nextjs
+# miro-boards-nextjs
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/evanch98/miro-clone-nextjs)
 ![GitHub stars](https://img.shields.io/github/stars/evanch98/miro-clone-nextjs?style=social)
