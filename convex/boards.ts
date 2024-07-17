@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-// import { getAllOrThrow } from "convex-helpers/server/relationships";
+import { getAllOrThrow } from "convex-helpers/server/relationships";
 import { query } from "./_generated/server";
 
 export const get = query({
@@ -15,63 +15,55 @@ export const get = query({
       throw new Error("Unauthorized");
     }
 
-    const boards = await ctx.db
-      .query("boards")
-      .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
-      .order("desc")
-      .collect();
+    if (args.favorites) {
+      const favoritedBoards = await ctx.db
+        .query("userFavorites")
+        .withIndex("by_user_org", (q) =>
+          q.eq("userId", identity.subject).eq("orgId", args.orgId)
+        )
+        .order("desc")
+        .collect();
 
-    return boards;
+      const ids = favoritedBoards.map((b) => b.boardId);
 
-    // if (args.favorites) {
-    //   const favoritedBoards = await ctx.db
-    //     .query("userFavorites")
-    //     .withIndex("by_user_org", (q) =>
-    //       q.eq("userId", identity.subject).eq("orgId", args.orgId)
-    //     )
-    //     .order("desc")
-    //     .collect();
+      const boards = await getAllOrThrow(ctx.db, ids);
 
-    //   const ids = favoritedBoards.map((b) => b.boardId);
+      return boards.map((board: any) => ({
+        ...board,
+        isFavorite: true,
+      }));
+    }
 
-    //   const boards = await getAllOrThrow(ctx.db, ids);
+    const title = args.search as string;
+    let boards = [];
 
-    //   return boards.map((board) => ({
-    //     ...board,
-    //     isFavorite: true,
-    //   }));
-    // }
+    if (title) {
+      boards = await ctx.db
+        .query("boards")
+        .withSearchIndex("search_title", (q) => q.search("title", title))
+        .collect();
+    } else {
+      boards = await ctx.db
+        .query("boards")
+        .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
+        .order("desc")
+        .collect();
+    }
 
-    // const title = args.search as string;
-    // let boards = [];
+    const boardsWithFavoriteRelation = boards.map((board) => {
+      return ctx.db
+        .query("userFavorites")
+        .withIndex("by_user_board", (q) =>
+          q.eq("userId", identity.subject).eq("boardId", board._id)
+        )
+        .unique()
+        .then((favorite) => {
+          return { ...board, isFavorite: !!favorite };
+        });
+    });
 
-    // if (title) {
-    //   boards = await ctx.db
-    //     .query("boards")
-    //     .withSearchIndex("search_title", (q) => q.search("title", title))
-    //     .collect();
-    // } else {
-    //   boards = await ctx.db
-    //     .query("boards")
-    //     .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
-    //     .order("desc")
-    //     .collect();
-    // }
+    const boardsWithFavoriteBoolean = Promise.all(boardsWithFavoriteRelation);
 
-    // const boardsWithFavoriteRelation = boards.map((board) => {
-    //   return ctx.db
-    //     .query("userFavorites")
-    //     .withIndex("by_user_board", (q) =>
-    //       q.eq("userId", identity.subject).eq("boardId", board._id)
-    //     )
-    //     .unique()
-    //     .then((favorite) => {
-    //       return { ...board, isFavorite: !!favorite };
-    //     });
-    // });
-
-    // const boardsWithFavoriteBoolean = Promise.all(boardsWithFavoriteRelation);
-
-    // return boardsWithFavoriteBoolean;
+    return boardsWithFavoriteBoolean;
   },
 });
