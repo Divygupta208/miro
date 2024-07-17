@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { ToolButton } from "./tool-button";
+
 import {
   Circle,
   MousePointer2,
@@ -11,6 +11,7 @@ import {
   Undo2,
 } from "lucide-react";
 import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
+import { ToolButton } from "./tool-button";
 
 interface ToolbarProps {
   canvasState: CanvasState;

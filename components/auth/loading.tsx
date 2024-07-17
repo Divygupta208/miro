@@ -6,9 +6,9 @@ export const Loading = () => {
       <Image
         src="/logo.svg"
         alt="Logo"
-        width={48}
-        height={48}
-        className="animate-spin duration-700"
+        width={56}
+        height={56}
+        className="animate-bounce duration-700"
       />
     </div>
   );
