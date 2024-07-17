@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# miro-clone-nextjs
+
+![GitHub repo size](https://img.shields.io/github/repo-size/evanch98/miro-clone-nextjs)
+![GitHub stars](https://img.shields.io/github/stars/evanch98/miro-clone-nextjs?style=social)
+![GitHub forks](https://img.shields.io/github/forks/evanch98/miro-clone-nextjs?style=social)
+
+<br />
+February, 2024. <br />
+Full-stack Miro Clone project built by using Next JS 14, React, TypeScript, Shadcn UI, Tailwind CSS, Convex Database, Zustand, liveblocks, and Clerk Auth.
+
+## Features
+
+- Create organizations and invite team members seamlessly.
+- Collaborate with team members seamlessly in Miro-like whiteboard interface.
+- Real-time collaboration using the real-time Convex database.
+- User authentication, organization creation, and management with Clerk Auth.
+- Responsive design with TailwindCSS.
+- State management using Zustand.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will help you set up and run the project on your local machine for development and testing purposes.
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/evanch98/notion-clone-nextjs.git
+cd your-repo-name
+```
+
+2. **Install the required dependencies:**
+
+```bash
+npm install
+```
+
+3. **Configure environmental variables:**
+   Create a `.env.local` file in the project root and set the necessary environment variables.
+
+```
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+LIVEBLOCKS_SECRET_KEY=
+```
+
+4. **Run the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. **Start building and customizing your Miro Clone!**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Convex](https://www.convex.dev/)
+- [Clerk Auth](https://clerk.com/)
+- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+- [Shadcn UI](https://ui.shadcn.com/)
+- [Liveblocks](https://liveblocks.io/)
 
-## Learn More
+## Acknowledgements
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority)
+- [clsx](https://www.npmjs.com/package/clsx)
+- [cmdk](https://www.npmjs.com/package/cmdk)
+- [date-fns](https://www.npmjs.com/package/date-fns)
+- [lucide-react](https://www.npmjs.com/package/lucide-react)
+- [nanoid](https://www.npmjs.com/package/nanoid)
+- [perfect-freehand](https://www.npmjs.com/package/perfect-freehand)
+- [query-string](https://www.npmjs.com/package/query-string)
+- [react-contenteditable](https://www.npmjs.com/package/react-contenteditable)
+- [sonner](https://www.npmjs.com/package/sonner)
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
+- [usehooks-ts](https://www.npmjs.com/package/usehooks-ts)
